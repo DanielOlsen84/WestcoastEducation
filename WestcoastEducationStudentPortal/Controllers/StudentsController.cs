@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WestcoastEducationAdministration.Models;
-using WestcoastEducationAdministration.Services;
+using WestcoastEducationStudentPortal.Models;
+using WestcoastEducationStudentPortal.Services;
 
 namespace WestcoastEducationAdministration.Controllers
 {

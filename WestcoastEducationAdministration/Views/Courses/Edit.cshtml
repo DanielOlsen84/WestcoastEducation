@@ -1,4 +1,5 @@
-﻿@model WestcoastEducationAdministration.Models.Course
+﻿@using WestcoastEducationAdministration.Common
+@model WestcoastEducationAdministration.Models.Course
 
 @{
     ViewData["Title"] = "Edit";
@@ -24,9 +25,20 @@
                 <span asp-validation-for="Lenght" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
+                <label asp-for="@Model.Category">Category:</label><br />
+                <select name="Category" id="Category">
+                    @foreach (var item in CourseCategory.CourseCategories)
+                    {
+                        if (item == Model.Category)
+                        {
+                            <option selected="selected" value="@item">@Html.DisplayFor(modelItem => item)</option>
+                        }
+                        else
+                        {
+                            <option value="@item">@Html.DisplayFor(modelItem => item)</option>
+                        }
+                    }
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>

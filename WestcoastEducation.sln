@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WestcoastEducationAPI", "We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WestcoastEducationStudentPortal", "WestcoastEducationStudentPortal\WestcoastEducationStudentPortal.csproj", "{CEE299B1-2C7B-47AF-9F0F-3B824B95CB40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WestcoastEducationAdministration", "WestcoastEducationAdministration\WestcoastEducationAdministration.csproj", "{DFD31998-349F-434B-8E7B-07BA74CC4AFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WestcoastEducationAdministration", "WestcoastEducationAdministration\WestcoastEducationAdministration.csproj", "{DFD31998-349F-434B-8E7B-07BA74CC4AFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

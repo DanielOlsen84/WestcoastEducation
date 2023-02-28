@@ -9,5 +9,6 @@ namespace WestcoastEducationAPI.DAL
         Task EditStudent(int id, Student student);
         Task<Student> GetStudent(int id);
         Task<List<Student>> GetStudents();
+        Task RegistrateStudentOnCourse(int studentId, int courseId);
     }
 }

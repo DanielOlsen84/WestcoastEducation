@@ -1,3 +1,5 @@
+using WestcoastEducationStudentPortal.Services;
+
 namespace WestcoastEducationStudentPortal
 {
     public class Program
@@ -8,6 +10,8 @@ namespace WestcoastEducationStudentPortal
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSingleton<CoursesService>();
+            builder.Services.AddSingleton<StudentsService>();
 
             var app = builder.Build();
 

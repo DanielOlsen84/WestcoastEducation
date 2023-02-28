@@ -51,5 +51,11 @@ namespace WestcoastEducationAPI.Controllers
         {
             await _repository.DeleteStudent(id);
         }
+
+        [HttpPost("{studentId}")]
+        public async Task RegistrateOnCourse(int studentId, [FromBody] int courseId)
+        {
+            await _repository.RegistrateStudentOnCourse(studentId, courseId);
+        }
     }
 }

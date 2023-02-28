@@ -48,6 +48,27 @@ namespace WestcoastEducationAPI.DAL
             await ctx.SaveChangesAsync();
         }
 
+        public async Task RegistrateStudentOnCourse(int studentId, int courseId)
+        {
+            var ctx = new Context();
+
+            var oldstudent = ctx.Students.FirstOrDefaultAsync(x => x.StudentId == studentId).Result;
+
+            if (oldstudent == null)
+            {
+                return;
+            }
+
+            var studentCourse = new StudentCourse { StudentId = studentId, CourseId = courseId };
+            ctx.StudentCourses.Add(studentCourse);
+
+            oldstudent.RegistratedCourses.Add(studentCourse);
+
+            ctx.Students.Update(oldstudent);
+
+            await ctx.SaveChangesAsync();
+        }
+
         public async Task DeleteStudent(int id)
         {
             var ctx = new Context();

@@ -1,0 +1,81 @@
+﻿@model WestcoastEducationStudentPortal.Models.RegistrateStudentModel
+
+@{
+    ViewData["Title"] = "RegistrateToCourse";
+}
+
+<h1>RegistrateToCourse</h1>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.CourseId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Course.CourseId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Course.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.Lenght)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Course.Lenght)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Course.Category)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Course.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Course.Details)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Course.Details)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <form asp-action="RegistrateStudentToCourse">
+        <div class="form-group">
+            @*<label asp-for="CourseId" class="control-label" >@Model.Course.CourseId</label>*@
+            <input asp-for="CourseId" hidden="true" class="form-control" value="@Model.Course.CourseId" />
+            <span asp-validation-for="CourseId" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="StudentId" class="control-label"></label>
+            <input asp-for="StudentId" class="form-control" />
+            <span asp-validation-for="StudentId" class="text-danger"></span>
+        </div>*@
+        <div class="form-group">
+            <label asp-for="Student" class="control-label">Student</label>
+            <select asp-for="Student" id="Student">
+                @foreach (var item in Model.Students)
+                {
+                    <option value="@item.StudentId">@Html.DisplayFor(modelItem => item.StudentId): @Html.DisplayFor(modelItem => item.LastName), @Html.DisplayFor(modelItem => item.FirstName)</option>
+                }
+            </select>
+            <span asp-validation-for="Student" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+<div>
+    <a asp-controller="Courses" asp-action="Index">Back to List</a>
+</div>
