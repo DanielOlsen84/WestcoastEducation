@@ -27,7 +27,8 @@ namespace WestcoastEducationAdministration.Controllers
                 return NotFound();
             }
 
-            return View(await _service.Get(id ?? 0));
+            var student = await _service.Get(id ?? 0);
+            return View(student);
         }
 
         // GET: Students/Create

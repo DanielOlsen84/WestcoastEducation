@@ -11,10 +11,12 @@ namespace WestcoastEducationAPI.Controllers
     public class StudentsController : ControllerBase
     {
         private readonly IStudentRepository _repository;
+        private readonly ICourseRepository _courseRepository;
 
-        public StudentsController(IStudentRepository studentRepository)
+        public StudentsController(IStudentRepository studentRepository, ICourseRepository courseRepository)
         {
             _repository = studentRepository;
+            _courseRepository = courseRepository;
         }
 
         [HttpGet]
@@ -28,7 +30,10 @@ namespace WestcoastEducationAPI.Controllers
         [HttpGet("{id}")]
         public async Task<Student> Get(int id)
         {
-            return await _repository.GetStudent(id);
+            var student = await _repository.GetStudent(id);
+            //var courses = await _courseRepository.GetCourses();
+
+            return student;
         }
 
         // POST api/<StudentsController>

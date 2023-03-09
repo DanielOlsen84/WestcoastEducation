@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using WestcoastEducationAPI.Models;
 
 namespace WestcoastEducationAPI.DAL
@@ -8,7 +9,13 @@ namespace WestcoastEducationAPI.DAL
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<StudentCourse> StudentCourses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Student>()
+                .HasMany(p => p.Courses)
+                .WithOne();
+        }
 
         public string DbPath { get; }
 

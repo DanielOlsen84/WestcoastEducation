@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 using WestcoastEducationAPI.Models;
 
 namespace WestcoastEducationAPI.DAL
@@ -22,13 +23,14 @@ namespace WestcoastEducationAPI.DAL
         public async Task<Student> GetStudent(int id)
         {
             var ctx = new Context();
-            return await ctx.Students.FindAsync(id);
+            var student = await ctx.Students.Include(x => x.Courses).FirstAsync(x => x.StudentId == id);
+            
+            return student;
         }
 
         public async Task EditStudent(int id, Student student)
         {
             var ctx = new Context();
-
             var oldstudent = ctx.Students.FirstOrDefaultAsync(x => x.StudentId == id).Result;
 
             if (oldstudent == null)
@@ -51,7 +53,6 @@ namespace WestcoastEducationAPI.DAL
         public async Task RegistrateStudentOnCourse(int studentId, int courseId)
         {
             var ctx = new Context();
-
             var oldstudent = ctx.Students.FirstOrDefaultAsync(x => x.StudentId == studentId).Result;
 
             if (oldstudent == null)
@@ -59,13 +60,21 @@ namespace WestcoastEducationAPI.DAL
                 return;
             }
 
-            var studentCourse = new StudentCourse { StudentId = studentId, CourseId = courseId };
-            ctx.StudentCourses.Add(studentCourse);
+            var course = ctx.Courses.FirstOrDefaultAsync(x => x.CourseId == courseId).Result;
 
-            oldstudent.RegistratedCourses.Add(studentCourse);
+            if (course == null)
+            {
+                return;
+            }
 
+            if (oldstudent.Courses == null)
+            {
+                oldstudent.Courses = new List<Course>();
+            }
+
+            oldstudent.Courses.Add(course);
             ctx.Students.Update(oldstudent);
-
+            
             await ctx.SaveChangesAsync();
         }
 
